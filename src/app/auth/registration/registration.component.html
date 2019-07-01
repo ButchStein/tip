@@ -1,0 +1,55 @@
+<h2 class="my-4 heading text-center">Регистрация</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group" [ngClass]="{'has-error':form.get('name').invalid && form.get('name').touched}">
+    <label for="name"></label>
+    <input type="text" class="form-control btn-block" id="name" name="fq_name" placeholder="Введите Ваш логин"
+           formControlName="name"
+    >
+    <span class="form-help-text" *ngIf="form.get('name').invalid && form.get('name').touched">
+      <span *ngIf="form.get('name')['errors']['required']">Логин не заполнен</span>
+      <span
+        *ngIf="form.get('name')['errors']['minlength']&& form.get('name')['errors']['minlength']['requiredLength']">
+        Логин не менее {{form.get('name')['errors']['minlength']['requiredLength']}} символов.
+      Вы ввели {{form.get('name')['errors']['minlength']['actualLength']}}</span>
+    </span>
+
+  </div>
+  <div class="form-group mb-4" [ngClass]="{'has-error':form.get('password').invalid && form.get('password').touched}">
+    <label for="password"></label>
+    <input type="password" class="form-control btn-block" id="password" name="fq_password" placeholder="Введите пароль"
+           formControlName="password"
+    >
+    <span class="form-help-text"
+          *ngIf="form.get('password').invalid && form.get('password').touched"
+    ><span
+      *ngIf="form.get('password')['errors']['required']">Пароль не заполнен</span>
+      <span
+        *ngIf="form.get('password')['errors']['minlength']&& form.get('password')['errors']['minlength']['requiredLength']">
+        Пароль не менее {{form.get('password')['errors']['minlength']['requiredLength']}} символов.
+      Вы ввели {{form.get('password')['errors']['minlength']['actualLength']}}</span>
+    </span>
+  </div>
+  <div class="form-group mb-4" [ngClass]="{'has-error':form.get('email').invalid && form.get('email').touched}">
+    <label for="email"></label>
+    <input type="email" class="form-control btn-block" id="email"
+           placeholder="Укажите Ваш реальный E-mail"
+           formControlName="email"
+    >
+    <span class="form-help-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+      <span *ngIf="form.get('email')['errors']['required']">E-mail не заполнен</span>
+      <span *ngIf="form.get('email')['errors']['email']">Не корректный E-mail</span>
+      <span *ngIf="form.get('email')['errors']['forbiddenEmail']">E-mail уже зарегистрирован</span>
+    </span>
+  </div>
+  <div class="form-group">
+    <input
+      type="submit"
+      class="btn btn-primary text-white py-2 px-4 btn-block"
+      value="Зарегистрироваться"
+      [disabled]="form.invalid"
+    >
+  </div>
+  <div class="form-group">
+    <p class="text-muted d-flex justify-content-around text-xs-center">Уже есть логин?<a [routerLink]="'/login'">Войти</a></p>
+  </div>
+</form>
