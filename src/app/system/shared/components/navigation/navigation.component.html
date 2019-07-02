@@ -1,0 +1,17 @@
+
+  <nav class="site-navigation position-relative text-right" role="navigation">
+    <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+      <li routerLinkActive="active"><a [routerLink]="['/system','news']">новости</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/system','categories']">категории</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/system','products']">продукция</a></li>
+      <li class="has-children">
+        <a>Здравствуйте, {{ user[0].name }}</a>
+        <ul class="dropdown">
+          <li><a [routerLink]="['/login']">войти</a></li>
+          <li><a (click)="onLogout()">выйти</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
